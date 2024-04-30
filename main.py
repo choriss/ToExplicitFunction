@@ -32,11 +32,12 @@ def solve():
     target_letters = target_entry.get().split(",")
     if target_letters != "":
         # latex -> sympy
-        eqs_sympy = list(map(latex2sympy2.latex2sympy,eqs))
-        # print(eqs)
-        # for i in range(len(eqs)):
-        #     print(eqs[i])
-        #     eqs_sympy[i] = str(latex2sympy2.latex2sympy(eqs[i]))
+        print(eqs)
+        eqs_sympy = []
+        for i in range(len(eqs)):
+            print(eqs[i])
+            temp = str(latex2sympy2.latex2sympy(eqs[i]))
+            eqs_sympy.append(temp)
 
         print(eqs_sympy)
 
@@ -52,6 +53,10 @@ def graph():
 
     if entry_eq.get() != "":
         try:
+            try:
+                before_text = tmptext
+            except:
+                pass
             tmptext = entry_eq.get() 
             tmptext = "$"+tmptext+"$"
             # Clear any previous Syntax from the figure
@@ -63,7 +68,13 @@ def graph():
         except:
             wx_eq.clear()
         finally:
-            canvas_eq.draw()
+            try:
+                wx_eq.clear()
+                wx_eq.text(-0.15, 0.4, before_text, fontsize = 15)
+                canvas_eq.draw()
+            except:
+                pass
+
     else:
         wx_eq.clear()
         canvas_eq.draw()

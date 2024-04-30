@@ -101,7 +101,7 @@ class ScrollableImageViewer:
             _start_y, end_y = self.scrollbar_y.get()
             self.after_y = max(min(_start_y + v, 1.0), 0.0)
             self.canvas.yview_moveto(self.after_y)
-            print(self.after_x)
+            # print(self.after_x)
             #マウス記憶
             self.start_y = event.y
 
